@@ -27,11 +27,10 @@ const AccardionWrapper = styled.div`
   padding: 14px 15px;
   position: relative;
   transition: 300ms;
-  border-radius: ${(props) =>
-    props.accardion ? "15px 15px 0px 0px" : "var(--default-border-radius)"};
+  border-radius: ${({accardion}) => accardion ? "15px 15px 0px 0px" : "var(--default-border-radius)"};
   background: ${(props) =>
     props.primary ? "white" : "var(--default-border-color)"};
-  cursor: ${(props) => (props.primary ? "unset" : "pointer")};
+  cursor: ${({primary}) => (primary ? "unset" : "pointer")};
   display: flex;
   align-items: center;
 `;
@@ -57,8 +56,8 @@ const AccardionWrapperHidden = styled.div`
 
   transition: 300ms;
   border-radius: 0px 0px 15px 15px;
-  ${(props) =>
-    props.accardion
+  ${({accardion}) =>
+    accardion
       ? "opacity: 1; visibility: visible;"
       : "opacity: 0; visibility: hidden;"}
 `;
@@ -66,6 +65,8 @@ const AccardionWrapperHidden = styled.div`
 const AccardionTitle = styled.div``;
 
 const AccardionItem = styled.div``;
+
+
 export function GeneratorBox() {
   const [accardion, setAccardion] = React.useState(false);
 
