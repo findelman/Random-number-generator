@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Box = styled.div`
   background: #ffffff;
-  box-shadow: 0px 5px 25px rgba(43, 93, 168, 0.15);
+  box-shadow: 0px 5px 25px var(--default-border-color);
   border-radius: var(--default-border-radius);
 `;
 
@@ -25,11 +25,13 @@ const SubTitle = styled.p`
 
 const AccardionWrapper = styled.div`
   padding: 14px 15px;
-  border-radius: var(--default-border-radius);
+  position: relative;
+  transition: 300ms;
+  border-radius: ${(props) =>
+    props.accardion ? "15px 15px 0px 0px" : "var(--default-border-radius)"};
   background: ${(props) =>
-    props.primary ? "white" : "rgba(43, 93, 168, 0.1)"};
-  cursor: ${(props) =>
-    props.primary ? "unset" : "pointer"};
+    props.primary ? "white" : "var(--default-border-color)"};
+  cursor: ${(props) => (props.primary ? "unset" : "pointer")};
   display: flex;
   align-items: center;
 `;
@@ -39,14 +41,38 @@ const AccardionImg = styled.img`
   margin-right: 14px;
 `;
 const NumberOutput = styled(AccardionWrapper)`
-  border: 1px solid rgba(43, 93, 168, 0.1);
+  border: 1px solid var(--default-border-color);
   margin-top: 20px;
 `;
 
-const AccardionWrapperHidden = styled.div``;
+const AccardionWrapperHidden = styled.div`
+  height: 200px;
+  position: absolute;
+  background: rgb(233 238 246);
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  transform: translateY(100%);
+  z-index: 5;
+
+  transition: 300ms;
+  border-radius: 0px 0px 15px 15px;
+  ${(props) =>
+    props.accardion
+      ? "opacity: 1; visibility: visible;"
+      : "opacity: 0; visibility: hidden;"}
+`;
+
 const AccardionTitle = styled.div``;
 
+const AccardionItem = styled.div``;
 export function GeneratorBox() {
+  const [accardion, setAccardion] = React.useState(false);
+
+  const toggleIsAccardion = () => {
+    setAccardion((current) => !current);
+    console.log("123");
+  };
   return (
     <Box>
       <BoxWrapper>
@@ -56,10 +82,12 @@ export function GeneratorBox() {
         </SubTitle>
       </BoxWrapper>
       <BoxWrapper>
-        <AccardionWrapper>
+        <AccardionWrapper onClick={toggleIsAccardion} accardion={accardion}>
           <AccardionImg src="https://static.sz.kz/img/logos/649.svg" />
           <AccardionTitle>лотерея «LOTO 6/49»</AccardionTitle>
-          <AccardionWrapperHidden></AccardionWrapperHidden>
+          <AccardionWrapperHidden accardion={accardion}>
+            <AccardionItem>TEST</AccardionItem>
+          </AccardionWrapperHidden>
         </AccardionWrapper>
         <NumberOutput primary></NumberOutput>
       </BoxWrapper>

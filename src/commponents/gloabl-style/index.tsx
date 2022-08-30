@@ -13,5 +13,6 @@ export const GlobalStyle = createGlobalStyle`
 
 :root {
     --default-border-radius: 15px;
+    --default-border-color: rgba(43, 93, 168, 0.1);
 }
 `;
