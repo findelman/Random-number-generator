@@ -9,11 +9,12 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
+  max-width: 1140px;
+  margin: 0 auto;
 `;
 
 function App() {
   return (
-    <div className="App">
       <Container>
         <div>
           <GeneratorBox></GeneratorBox>
@@ -21,7 +22,6 @@ function App() {
           <Accardion/>
         </div>
       </Container>
-    </div>
   );
 }
 
