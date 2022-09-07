@@ -15,15 +15,23 @@ const Container = styled.div`
 `;
 
 function App() {
+  const [changeACDText, setChangeACDText] = React.useState(
+    "лотерея «LOTO 6/49»"
+  );
+
+  // переделать
+  function AccardionItemClick(event) {
+    setChangeACDText(event.currentTarget.innerText);
+  }
   return (
       <Container>
         <div>
-          <GeneratorBox></GeneratorBox>
+          <GeneratorBox click={AccardionItemClick}  text={changeACDText}></GeneratorBox>
           <Buttons></Buttons>
           <Accardion/>
         </div>
         <div>
-          <StatisticsBox></StatisticsBox>
+          <StatisticsBox text={changeACDText}></StatisticsBox>
         </div>
       </Container>
   );

@@ -28,11 +28,11 @@ const NumberCounter = styled.div`
 const ProgressLineWrapper = styled.div`
     
 `
-export const StatisticsBox = () => {
+export const StatisticsBox = ({text}) => {
   return (
     <>
       <Box>
-        <Title>Статистика лотереи «LOTO 6/49»</Title>
+        <Title>Статистика лотереи {text}</Title>
         <NumberCounter>
           <b>0/6</b> Собери комбинацию
         </NumberCounter>
