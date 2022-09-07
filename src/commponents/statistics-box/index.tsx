@@ -32,7 +32,7 @@ export const StatisticsBox = ({text}) => {
   return (
     <>
       <Box>
-        <Title>Статистика лотереи {text}</Title>
+        <Title>Статистика {text}</Title>
         <NumberCounter>
           <b>0/6</b> Собери комбинацию
         </NumberCounter>

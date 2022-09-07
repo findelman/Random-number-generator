@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { Accardion } from "./commponents/accardion";
@@ -15,18 +15,16 @@ const Container = styled.div`
 `;
 
 function App() {
-  const [changeText, setChangeText] = React.useState(
-    "лотерея «LOTO 6/49»"
-  );
-
-  // переделать
+  const [change, setChange] = useState(['лотерея «LOTO 6/49»','https://static.sz.kz/img/logos/649.svg']);
+  const [changeText,changeImg] = change
   function AccardionItemClick(event) {
-    setChangeText(event.currentTarget.innerText);
+    let img = event.currentTarget.querySelector('img')
+    setChange([event.currentTarget.innerText,img.src])
   }
   return (
       <Container>
         <div>
-          <GeneratorBox click={AccardionItemClick}  text={changeText}></GeneratorBox>
+          <GeneratorBox click={AccardionItemClick}  text={changeText} img={changeImg}></GeneratorBox>
           <Buttons></Buttons>
           <Accardion/>
         </div>
