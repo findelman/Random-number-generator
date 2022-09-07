@@ -69,7 +69,7 @@ const AccardionWrapperHidden = styled.div`
 
 const AccardionTitle = styled.div``;
 
-export function GeneratorBox({click,text,img}) {
+export function GeneratorBox({click,text,img,numbers}) {
   const [accardion, setAccardion] = React.useState(false);
 
   const toggleIsAccardion = () => {
@@ -101,7 +101,7 @@ export function GeneratorBox({click,text,img}) {
             />
           </AccardionWrapperHidden>
         </AccardionWrapper>
-        <NumberOutput primary></NumberOutput>
+        <NumberOutput primary>{numbers}</NumberOutput>
       </BoxWrapper>
     </Box>
   );

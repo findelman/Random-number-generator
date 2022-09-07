@@ -20,11 +20,12 @@ function App() {
   function AccardionItemClick(event) {
     let img = event.currentTarget.querySelector('img')
     setChange([event.currentTarget.innerText,img.src])
+
   }
   return (
       <Container>
         <div>
-          <GeneratorBox click={AccardionItemClick}  text={changeText} img={changeImg}></GeneratorBox>
+          <GeneratorBox click={AccardionItemClick}  text={changeText} img={changeImg} numbers={'123'}></GeneratorBox>
           <Buttons></Buttons>
           <Accardion/>
         </div>
