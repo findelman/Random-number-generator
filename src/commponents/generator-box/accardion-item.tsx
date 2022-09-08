@@ -14,9 +14,9 @@ const BoxImg = styled.img`
   width: 37px;
   margin-right: 14px;
 `;
-export const AccardionItem = ({ img, actionHandler, text }) => {
+export const AccardionItem = ({ img, actionHandler, text,limit, amount }) => {
   return (
-    <Box onClick={actionHandler}>
+    <Box data-number-limit={limit} onClick={actionHandler} data-amount-number={amount}>
       <BoxImg src={img} />
       {text}{" "}
     </Box>

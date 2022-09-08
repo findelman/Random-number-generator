@@ -22,10 +22,10 @@ margin-top: 40px;
 column-gap: 10px;
     
 `
-export const Buttons = () => {
-  return (
+export const Buttons = ({handleClick}) => {
+ return (
     <ButtonsWrapper>
-      <GenerateButton>Сгенерировать</GenerateButton>
+      <GenerateButton onClick={handleClick}>Сгенерировать</GenerateButton>
       <GenerateButton primary>Купить билет</GenerateButton>
     </ButtonsWrapper>
   );

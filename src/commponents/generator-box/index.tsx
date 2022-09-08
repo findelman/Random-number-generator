@@ -89,12 +89,15 @@ export function GeneratorBox({click,text,img,numbers}) {
           <AccardionTitle>{text}</AccardionTitle>
           <AccardionWrapperHidden accardion={accardion}>
             <AccardionItem
-            
+              limit={6}
+              amount={49}
               actionHandler={click}
               img={"https://static.sz.kz/img/logos/649.svg"}
               text={"лотерея «LOTO 6/49»"}
             />
             <AccardionItem
+              limit={5}
+              amount={36}
               actionHandler={click}
               img={"https://static.sz.kz/img/logos/536.svg"}
               text={"лотерея «5/36»"}

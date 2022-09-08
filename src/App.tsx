@@ -1,3 +1,4 @@
+import { click } from "@testing-library/user-event/dist/click";
 import React, { useState } from "react";
 import styled from "styled-components";
 
@@ -14,25 +15,58 @@ const Container = styled.div`
   margin: 90px auto 0px;
 `;
 
-function App() {
-  const [change, setChange] = useState(['лотерея «LOTO 6/49»','https://static.sz.kz/img/logos/649.svg']);
-  const [changeText,changeImg] = change
-  function AccardionItemClick(event) {
-    let img = event.currentTarget.querySelector('img')
-    setChange([event.currentTarget.innerText,img.src])
+const OutNumber = styled.div`
+  margin-right: 8px;
+`
 
+function App() {
+  const [change, setChange] = useState([
+    "лотерея «LOTO 6/49»",
+    "https://static.sz.kz/img/logos/649.svg",
+  ]);
+  const [changeText, changeImg] = change;
+
+  const [outNumbers, setOutNumbers] = useState([18,22,26,27,32,43]);
+
+  const [generateConifg, setGenerateConfig] = useState([6,46])  
+  const [limitNumber, amountNumber] = generateConifg;
+
+  function AccardionItemClick(event) {
+    let target = event.currentTarget;
+    let img = target.querySelector("img");
+    setChange([target.innerText, img.src]);
+  
+    setGenerateConfig([parseInt(target.dataset.numberLimit),parseInt(target.dataset.amountNumber)])
+    console.log(limitNumber, amountNumber)
+    generateRandomNumbers()
   }
+
+  function generateRandomNumbers() {
+    let arr: number[] = []
+    for (let i = 0; i < limitNumber; i++) {
+      let randomNumber = Math.floor(Math.random() * amountNumber)
+      arr.push(randomNumber)
+    }
+    console.log(limitNumber, amountNumber)
+    setOutNumbers(arr.sort((a,b) => a -b))
+  }
+
   return (
-      <Container>
-        <div>
-          <GeneratorBox click={AccardionItemClick}  text={changeText} img={changeImg} numbers={'123'}></GeneratorBox>
-          <Buttons></Buttons>
-          <Accardion/>
-        </div>
-        <div>
-          <StatisticsBox text={changeText}></StatisticsBox>
-        </div>
-      </Container>
+    <Container>
+      <div>
+        <GeneratorBox
+          click={AccardionItemClick}
+          text={changeText}
+          img={changeImg}
+          numbers={outNumbers.map((item) => <OutNumber>{item}</OutNumber>)}
+        ></GeneratorBox>
+        <Buttons handleClick={generateRandomNumbers} />
+        <Accardion />
+      </div>
+      <div>
+        <StatisticsBox text={changeText}></StatisticsBox>
+      </div>
+    </Container>
   );
 }
 
