@@ -1,5 +1,5 @@
 import { click } from "@testing-library/user-event/dist/click";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { Accardion } from "./commponents/accardion";
@@ -38,18 +38,25 @@ function App() {
   
     setGenerateConfig([parseInt(target.dataset.numberLimit),parseInt(target.dataset.amountNumber)])
     console.log(limitNumber, amountNumber)
-    generateRandomNumbers()
+    console.log(parseInt(target.dataset.numberLimit),parseInt(target.dataset.amountNumber))
+
   }
 
   function generateRandomNumbers() {
     let arr: number[] = []
     for (let i = 0; i < limitNumber; i++) {
-      let randomNumber = Math.floor(Math.random() * amountNumber)
+      let randomNumber = Math.floor((Math.random() * amountNumber) + 1)
       arr.push(randomNumber)
     }
     console.log(limitNumber, amountNumber)
     setOutNumbers(arr.sort((a,b) => a -b))
   }
+
+  useEffect(()=> {
+    generateRandomNumbers()
+
+  },[generateConifg])
+
 
   return (
     <Container>
