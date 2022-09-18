@@ -38,7 +38,6 @@ function App() {
   
     setGenerateConfig([parseInt(target.dataset.numberLimit),parseInt(target.dataset.amountNumber)])
     console.log(limitNumber, amountNumber)
-    console.log(parseInt(target.dataset.numberLimit),parseInt(target.dataset.amountNumber))
 
   }
 
