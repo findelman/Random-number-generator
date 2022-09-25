@@ -5,9 +5,9 @@ const GenerateButton = styled.button`
   padding: 12px 0px;
   border-radius: 30px;
   color: white;
-  color: ${(props) => (props.primary ? "#000" : "white")};
-  background: ${(props) => (props.primary ? "#FFCC01" : "#2b5da8")};
-  width: ${(props) => (props.primary ? "40%" : "60%")};;
+  color: ${({primary}) => (primary ? "#000" : "white")};
+  background: ${({primary}) => (primary ? "#FFCC01" : "#2b5da8")};
+  width: ${({primary}) => (primary ? "40%" : "60%")};;
   border: unset;
   cursor: pointer;
   transition: 300ms;
