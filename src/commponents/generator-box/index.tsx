@@ -33,8 +33,8 @@ const AccardionWrapper = styled.div`
   transition: 300ms;
   border-radius: ${({ accardion }) =>
     accardion ? "15px 15px 0px 0px" : "var(--default-border-radius)"};
-  background: ${(props) =>
-    props.primary ? "white" : "var(--default-border-color)"};
+  background: ${({primary}) =>
+    primary ? "white" : "var(--default-border-color)"};
   cursor: ${({ primary }) => (primary ? "unset" : "pointer")};
   display: flex;
   align-items: center;
