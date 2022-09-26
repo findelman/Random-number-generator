@@ -33,7 +33,7 @@ const AccardionWrapper = styled.div`
   transition: 300ms;
   border-radius: ${({ accardion }) =>
     accardion ? "15px 15px 0px 0px" : "var(--default-border-radius)"};
-  background: ${({primary}) =>
+  background: ${({ primary }) =>
     primary ? "white" : "var(--default-border-color)"};
   cursor: ${({ primary }) => (primary ? "unset" : "pointer")};
   display: flex;
@@ -69,7 +69,7 @@ const AccardionWrapperHidden = styled.div`
 
 const AccardionTitle = styled.div``;
 
-export function GeneratorBox({click,text,img,numbers}) {
+export function GeneratorBox({ click, text, img, numbers }) {
   const [accardion, setAccardion] = React.useState(false);
 
   const toggleIsAccardion = () => {
@@ -101,6 +101,27 @@ export function GeneratorBox({click,text,img,numbers}) {
               actionHandler={click}
               img={"https://static.sz.kz/img/logos/536.svg"}
               text={"лотерея «5/36»"}
+            />
+            <AccardionItem
+              limit={10}
+              amount={80}
+              actionHandler={click}
+              img={"https://static.sz.kz/img/logos/keno.svg"}
+              text={"лотерея «KENO»"}
+            />
+                        <AccardionItem
+              limit={10}
+              amount={80}
+              actionHandler={click}
+              img={"https://static.sz.kz/img/logos/keno2.svg"}
+              text={"лотерея «KENO2»"}
+            />
+                  <AccardionItem
+              limit={3}
+              amount={9}
+              actionHandler={click}
+              img={"https://static.sz.kz/img/logos/777.svg"}
+              text={"лотерея «777»"}
             />
           </AccardionWrapperHidden>
         </AccardionWrapper>

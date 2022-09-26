@@ -19,9 +19,9 @@ const GenerateButton = styled.button`
 const ButtonsWrapper = styled.div`
 display: flex;
 margin-top: 40px;
-column-gap: 10px;
-    
+column-gap: 10px;    
 `
+
 export const Buttons = ({handleClick}) => {
  return (
     <ButtonsWrapper>
