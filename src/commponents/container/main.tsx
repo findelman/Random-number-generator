@@ -27,7 +27,7 @@ export const MainContainer = () => {
 
   const { limitNumber, amountNumber, gameTitle, gameImg } = changeInfo;
 
-  const [outNumbers, setOutNumbers] = useState([18, 22, 26, 27, 32, 43]);
+  const [randomNumbers, setRandomNumbers] = useState([18, 22, 26, 27, 32, 43]);
 
   const generateRandomNumbers = () => {
     let arr: number[] = [];
@@ -36,7 +36,7 @@ export const MainContainer = () => {
       arr.push(randomNumber);
     }
     console.log(limitNumber, amountNumber);
-    setOutNumbers(arr.sort((a, b) => a - b));
+    setRandomNumbers(arr.sort((a, b) => a - b));
   };
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export const MainContainer = () => {
           changeInfo={setChangeInfo}
           text={gameTitle}
           img={gameImg}
-          numbers={outNumbers.map((item) => (
+          numbers={randomNumbers.map((item) => (
             <OutNumber>{item}</OutNumber>
           ))}
         ></GeneratorBox>
