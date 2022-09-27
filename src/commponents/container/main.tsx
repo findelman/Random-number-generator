@@ -18,28 +18,16 @@ const OutNumber = styled.div`
 `;
 
 export const MainContainer = () => {
-  const [change, setChange] = useState([
-    "лотерея «LOTO 6/49»",
-    "https://static.sz.kz/img/logos/649.svg",
-  ]);
-  const [changeText, changeImg] = change;
+  const [changeInfo, setChangeInfo] = useState({
+    limitNumber: 6,
+    amountNumber: 46,
+    gameTitle: "лотерея «LOTO 6/49»",
+    gameImg: "https://static.sz.kz/img/logos/649.svg",
+  });
+
+  const { limitNumber, amountNumber, gameTitle, gameImg } = changeInfo;
 
   const [outNumbers, setOutNumbers] = useState([18, 22, 26, 27, 32, 43]);
-
-  const [generateConifg, setGenerateConfig] = useState([6, 46]);
-  const [limitNumber, amountNumber] = generateConifg;
-
-  function AccardionItemClick(event) {
-    let target = event.currentTarget;
-    let img = target.querySelector("img");
-    setChange([target.innerText, img.src]);
-
-    setGenerateConfig([
-      parseInt(target.dataset.numberLimit),
-      parseInt(target.dataset.amountNumber),
-    ]);
-    console.log(limitNumber, amountNumber);
-  }
 
   const generateRandomNumbers = () => {
     let arr: number[] = [];
@@ -53,15 +41,15 @@ export const MainContainer = () => {
 
   useEffect(() => {
     generateRandomNumbers();
-  }, [generateConifg]);
+  }, [changeInfo]);
 
   return (
     <Container>
       <div>
         <GeneratorBox
-          click={AccardionItemClick}
-          text={changeText}
-          img={changeImg}
+          changeInfo={setChangeInfo}
+          text={gameTitle}
+          img={gameImg}
           numbers={outNumbers.map((item) => (
             <OutNumber>{item}</OutNumber>
           ))}
@@ -70,7 +58,7 @@ export const MainContainer = () => {
         <Accardion />
       </div>
       <div>
-        <StatisticsBox text={changeText}></StatisticsBox>
+        <StatisticsBox text={gameTitle}></StatisticsBox>
       </div>
     </Container>
   );

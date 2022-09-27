@@ -69,7 +69,13 @@ const AccardionWrapperHidden = styled.div`
 
 const AccardionTitle = styled.div``;
 
-export function GeneratorBox({ click, text, img, numbers }) {
+export function GeneratorBox({
+  text,
+  img,
+  numbers,
+  changeInfo,
+  
+}) {
   const [accardion, setAccardion] = React.useState(false);
 
   const toggleIsAccardion = () => {
@@ -90,36 +96,36 @@ export function GeneratorBox({ click, text, img, numbers }) {
           <AccardionWrapperHidden accardion={accardion}>
             <AccardionItem
               limit={6}
+              changeInfo={changeInfo}
               amount={49}
-              actionHandler={click}
               img={"https://static.sz.kz/img/logos/649.svg"}
               text={"лотерея «LOTO 6/49»"}
             />
             <AccardionItem
               limit={5}
+              changeInfo={changeInfo}
               amount={36}
-              actionHandler={click}
               img={"https://static.sz.kz/img/logos/536.svg"}
               text={"лотерея «5/36»"}
             />
             <AccardionItem
               limit={10}
+              changeInfo={changeInfo}
               amount={80}
-              actionHandler={click}
               img={"https://static.sz.kz/img/logos/keno.svg"}
               text={"лотерея «KENO»"}
             />
-                        <AccardionItem
+            <AccardionItem
               limit={10}
+              changeInfo={changeInfo}
               amount={80}
-              actionHandler={click}
               img={"https://static.sz.kz/img/logos/keno2.svg"}
               text={"лотерея «KENO2»"}
             />
-                  <AccardionItem
+            <AccardionItem
               limit={3}
+              changeInfo={changeInfo}
               amount={9}
-              actionHandler={click}
               img={"https://static.sz.kz/img/logos/777.svg"}
               text={"лотерея «777»"}
             />

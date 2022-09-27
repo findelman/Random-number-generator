@@ -14,11 +14,22 @@ const BoxImg = styled.img`
   width: 37px;
   margin-right: 14px;
 `;
-export const AccardionItem = ({ img, actionHandler, text,limit, amount }) => {
+export const AccardionItem = ({ img, text, limit, amount, changeInfo }) => {
   return (
-    <Box data-number-limit={limit} onClick={actionHandler} data-amount-number={amount}>
+    <Box
+      data-number-limit={limit}
+      onClick={() => {
+        changeInfo({
+          gameTitle: text,
+          gameImg: img,
+          amountNumber: amount,
+          limitNumber: limit,
+        });
+      }}
+      data-amount-number={amount}
+    >
       <BoxImg src={img} />
-      {text}{" "}
+      {text}
     </Box>
   );
 };
