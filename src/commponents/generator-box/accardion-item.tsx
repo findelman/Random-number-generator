@@ -1,6 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
+// interface AccardionImte {
+//   img: string,
+//   text: string,
+//   limit: number,
+//   amount: number,
+//   // changeInfo?: () ;
+// }
+
 const Box = styled.div`
   display: flex;
   border-bottom: 1px solid rgba(43, 93, 168, 0.1);

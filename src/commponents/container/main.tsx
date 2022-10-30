@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { apiStatistics } from "../../fake-api/api";
 import { Accardion } from "../accardion";
 import { GeneratorBox } from "../generator-box";
 import { Buttons } from "../generator-box/buttons";
@@ -58,7 +59,14 @@ export const MainContainer = () => {
         <Accardion />
       </div>
       <div>
-        <StatisticsBox text={gameTitle}></StatisticsBox>
+        <StatisticsBox
+          limitNumber={limitNumber}
+          numberCount={randomNumbers.length}
+          numberArray={randomNumbers}
+          randomNumbers={setRandomNumbers}
+          api={apiStatistics}
+          text={gameTitle}
+        ></StatisticsBox>
       </div>
     </Container>
   );
