@@ -26,6 +26,8 @@ export const MainContainer = () => {
     gameImg: "https://static.sz.kz/img/logos/649.svg",
   });
 
+  const [api, setApi] = useState(apiStatistics);
+
   const { limitNumber, amountNumber, gameTitle, gameImg } = changeInfo;
 
   const [randomNumbers, setRandomNumbers] = useState([18, 22, 26, 27, 32, 43]);
@@ -58,13 +60,14 @@ export const MainContainer = () => {
         <Buttons handleClick={generateRandomNumbers} />
         <Accardion />
       </div>
+      {console.log(api.find((item) => item.game === "keno"))}
       <div>
         <StatisticsBox
           limitNumber={limitNumber}
           numberCount={randomNumbers.length}
           numberArray={randomNumbers}
           randomNumbers={setRandomNumbers}
-          api={apiStatistics}
+          api={api}
           text={gameTitle}
         ></StatisticsBox>
       </div>
