@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { AccardionItem } from "./accardion-item";
+import { AccardionItemsWrapper } from "./AccardionItemsWrapper";
 
 const Box = styled.div`
   background: #ffffff;
@@ -19,6 +19,7 @@ const Title = styled.h1`
   font-weight: 800;
   font-size: 23px;
   line-height: 27px;
+  margin-bottom: 10px;
 `;
 
 const SubTitle = styled.p`
@@ -49,33 +50,20 @@ const NumberOutput = styled(AccardionWrapper)`
   margin-top: 20px;
 `;
 
-const AccardionWrapperHidden = styled.div`
-  position: absolute;
-  background: white;
-  width: 100%;
-  box-shadow: 0px 5px 25px rgb(43 93 168 / 15%);
-  left: 0;
-  bottom: 0;
-  transform: translateY(100%);
-  z-index: 5;
-  overflow: hidden;
-  transition: 300ms;
-  border-radius: 0px 0px 15px 15px;
-  ${({ accardion }) =>
-    accardion
-      ? "opacity: 1; visibility: visible;"
-      : "opacity: 0; visibility: hidden;"}
-`;
-
 const AccardionTitle = styled.div``;
 
-export function GeneratorBox({
-  text,
-  img,
-  numbers,
-  changeInfo,
-  
-}) {
+const Header = React.memo(() => {
+  return (
+    <BoxWrapper>
+      <Title>Генератор cлучайных чисел</Title>
+      <SubTitle>
+        Создавайте свои случайные лотрейные комбинации для тиражных лотерей.
+      </SubTitle>
+    </BoxWrapper>
+  );
+});
+
+export const GeneratorBox = ({ text, img, numbers, changeInfo }) => {
   const [accardion, setAccardion] = React.useState(false);
 
   const toggleIsAccardion = () => {
@@ -83,56 +71,18 @@ export function GeneratorBox({
   };
   return (
     <Box>
-      <BoxWrapper>
-        <Title>Генератор cлучайных чисел</Title>
-        <SubTitle>
-          Создавайте свои счастливые лотрейные комбинации для тиражных лотерей.
-        </SubTitle>
-      </BoxWrapper>
+      <Header />
       <BoxWrapper>
         <AccardionWrapper onClick={toggleIsAccardion} accardion={accardion}>
           <AccardionImg src={img} />
           <AccardionTitle>{text}</AccardionTitle>
-          <AccardionWrapperHidden accardion={accardion}>
-            <AccardionItem
-              limit={6}
-              changeInfo={changeInfo}
-              amount={49}
-              img={"https://static.sz.kz/img/logos/649.svg"}
-              text={"лотерея «LOTO 6/49»"}
-            />
-            <AccardionItem
-              limit={5}
-              changeInfo={changeInfo}
-              amount={36}
-              img={"https://static.sz.kz/img/logos/536.svg"}
-              text={"лотерея «5/36»"}
-            />
-            <AccardionItem
-              limit={10}
-              changeInfo={changeInfo}
-              amount={80}
-              img={"https://static.sz.kz/img/logos/keno.svg"}
-              text={"лотерея «KENO»"}
-            />
-            <AccardionItem
-              limit={10}
-              changeInfo={changeInfo}
-              amount={80}
-              img={"https://static.sz.kz/img/logos/keno2.svg"}
-              text={"лотерея «KENO2»"}
-            />
-            <AccardionItem
-              limit={3}
-              changeInfo={changeInfo}
-              amount={9}
-              img={"https://static.sz.kz/img/logos/777.svg"}
-              text={"лотерея «777»"}
-            />
-          </AccardionWrapperHidden>
+          <AccardionItemsWrapper
+            accardion={accardion}
+            changeInfo={changeInfo}
+          />
         </AccardionWrapper>
         <NumberOutput primary>{numbers}</NumberOutput>
       </BoxWrapper>
     </Box>
   );
-}
+};

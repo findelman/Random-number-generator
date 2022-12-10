@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { apiStatistics } from "../../fake-api/api";
+import { useGenerateRandomNumbers } from "../../hooks/useGenerateRandomNumbers";
+import { useStatisticData } from "../../hooks/useStatisticData";
 import { Accardion } from "../accardion";
 import { GeneratorBox } from "../generator-box";
 import { Buttons } from "../generator-box/buttons";
@@ -25,10 +27,9 @@ export const MainContainer = () => {
     gameTitle: "лотерея «LOTO 6/49»",
     gameImg: "https://static.sz.kz/img/logos/649.svg",
   });
-
-  const [api, setApi] = useState(apiStatistics);
-
   const { limitNumber, amountNumber, gameTitle, gameImg } = changeInfo;
+
+  const statisticData = useStatisticData(changeInfo);
 
   const [randomNumbers, setRandomNumbers] = useState([18, 22, 26, 27, 32, 43]);
 
@@ -38,7 +39,6 @@ export const MainContainer = () => {
       let randomNumber = Math.floor(Math.random() * amountNumber + 1);
       arr.push(randomNumber);
     }
-    console.log(limitNumber, amountNumber);
     setRandomNumbers(arr.sort((a, b) => a - b));
   };
 
@@ -60,16 +60,15 @@ export const MainContainer = () => {
         <Buttons handleClick={generateRandomNumbers} />
         <Accardion />
       </div>
-      {console.log(api.find((item) => item.game === "keno"))}
       <div>
         <StatisticsBox
           limitNumber={limitNumber}
           numberCount={randomNumbers.length}
           numberArray={randomNumbers}
           randomNumbers={setRandomNumbers}
-          api={api}
+          api={statisticData}
           text={gameTitle}
-        ></StatisticsBox>
+        />
       </div>
     </Container>
   );

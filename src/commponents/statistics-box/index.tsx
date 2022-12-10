@@ -153,7 +153,7 @@ export const StatisticsBox = ({
         </NumberCounter>
         <ProgressLineWrapper></ProgressLineWrapper>
         <NumberWrapper
-          api={api[0].less}
+          api={api?.less}
           randomNumbers={randomNumbers}
           numberArray={numberArray}
           svg={<LessSvg />}
@@ -161,7 +161,7 @@ export const StatisticsBox = ({
           text={"Числа, которые выпали в предыдущем тираже лотереи"}
         />
         <NumberWrapper
-          api={api[0].most}
+          api={api?.most}
           randomNumbers={randomNumbers}
           numberArray={numberArray}
           svg={<LessSvg />}
@@ -169,7 +169,7 @@ export const StatisticsBox = ({
           text={"Числа, которые часто выпадают в лотерее"}
         />
         <NumberWrapper
-          api={api[0].last}
+          api={api?.last}
           randomNumbers={randomNumbers}
           numberArray={numberArray}
           svg={<LessSvg />}
