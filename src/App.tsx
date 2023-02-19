@@ -1,8 +1,11 @@
 import { MainContainer } from "./commponents/container/main";
+import { GameProvaider } from "./context/GameProvaider";
 
 function App() {
   return (
-    <MainContainer />
+    <GameProvaider>
+      <MainContainer />
+    </GameProvaider>
   );
 }
 

@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
+import { GameContext } from "../../context/GameProvaider";
 import { apiStatistics } from "../../fake-api/api";
 import { useGenerateRandomNumbers } from "../../hooks/useGenerateRandomNumbers";
 import { useStatisticData } from "../../hooks/useStatisticData";
@@ -21,39 +22,31 @@ const OutNumber = styled.div`
 `;
 
 export const MainContainer = () => {
-  const [changeInfo, setChangeInfo] = useState({
-    limitNumber: 6,
-    amountNumber: 46,
-    gameTitle: "лотерея «LOTO 6/49»",
-    gameImg: "https://static.sz.kz/img/logos/649.svg",
-  });
-  const { limitNumber, amountNumber, gameTitle, gameImg } = changeInfo;
+  const { gameNumber, setGameNumber, gameInfo, setgameInfo } =
+    useContext(GameContext);
 
-  const statisticData = useStatisticData(changeInfo);
+  const { limitNumber, amountNumber, gameTitle, gameImg } = gameInfo;
 
-  const [randomNumbers, setRandomNumbers] = useState([18, 22, 26, 27, 32, 43]);
+  const statisticData = useStatisticData(gameInfo);
 
   const generateRandomNumbers = () => {
-    let arr: number[] = [];
+    const arr: number[] = [];
     for (let i = 0; i < limitNumber; i++) {
-      let randomNumber = Math.floor(Math.random() * amountNumber + 1);
+      const randomNumber = Math.floor(Math.random() * amountNumber + 1);
       arr.push(randomNumber);
     }
-    setRandomNumbers(arr.sort((a, b) => a - b));
+    setgameInfo({ ...gameInfo, ["generate"]: false });
+    setGameNumber(arr.sort((a, b) => a - b));
   };
-
-  useEffect(() => {
-    generateRandomNumbers();
-  }, [changeInfo]);
 
   return (
     <Container>
       <div>
         <GeneratorBox
-          changeInfo={setChangeInfo}
+          changeInfo={gameInfo}
           text={gameTitle}
           img={gameImg}
-          numbers={randomNumbers.map((item) => (
+          numbers={gameNumber.map((item) => (
             <OutNumber>{item}</OutNumber>
           ))}
         ></GeneratorBox>
@@ -62,10 +55,8 @@ export const MainContainer = () => {
       </div>
       <div>
         <StatisticsBox
-          limitNumber={limitNumber}
-          numberCount={randomNumbers.length}
-          numberArray={randomNumbers}
-          randomNumbers={setRandomNumbers}
+          numberCount={gameNumber.length}
+          randomNumbers={setGameNumber}
           api={statisticData}
           text={gameTitle}
         />

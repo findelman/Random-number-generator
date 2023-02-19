@@ -12,8 +12,8 @@ root.render(
   <>
     <GlobalStyle />
     <App />
-    </>
-    // </React.StrictMode>
+  </>
+  // </React.StrictMode>
 );
 
-reportWebVitals();
+reportWebVitals();  

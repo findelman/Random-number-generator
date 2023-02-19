@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import { GameContext } from "../../context/GameProvaider";
 import { FlexCenter } from "../../gloabl-style/style-variables";
 import { LessSvg } from "./svg";
 
@@ -28,6 +29,9 @@ const NumberCounter = styled.div`
 `;
 
 const Number = styled.button<{ isActive?: boolean }>`
+  :disabled {
+    opacity: ${({ isActive }) => (isActive ? "1" : "0.5")};
+  }
   max-height: 38px;
   transition: 300ms;
   color: ${({ isActive }) => (isActive ? "white" : "black")};
@@ -45,25 +49,34 @@ const Number = styled.button<{ isActive?: boolean }>`
   align-items: center;
 `;
 
-const NumberItem = ({ randomNumbers, numberArray, item, index }) => {
+const NumberItem = ({ item, index }) => {
   const [numberActive, setNumberActive] = useState(false);
+  const { gameNumber, setGameNumber, gameInfo, setgameInfo } =
+    useContext(GameContext);
 
-  if (numberArray.length >= 6) {
-    numberArray = [];
-  }
   const numberArrayPush = () => {
+    if (gameInfo.generate) {
+      console.log("BLYAA");
+      setGameNumber([]);
+    }
+    setgameInfo({ ...gameInfo, ["generate"]: false });
     setNumberActive(!numberActive);
-    if (!numberArray.includes(item)) {
-      randomNumbers([...numberArray, item]);
+    if (!gameNumber.includes(item)) {
+      setGameNumber([...gameNumber, item]);
     } else {
-      console.log(numberArray);
-      numberArray.splice(numberArray.indexOf(item), 1);
-      randomNumbers([...numberArray]);
+      console.log(gameNumber);
+      gameNumber.splice(gameNumber.indexOf(item), 1);
+      setGameNumber([...gameNumber]);
     }
   };
 
   return (
-    <Number isActive={numberActive} onClick={numberArrayPush} key={index}>
+    <Number
+      disabled={gameNumber.length === gameInfo.limitNumber && !gameNumber.includes(item)}
+      isActive={gameNumber.includes(item) && !gameInfo.generate}
+      onClick={numberArrayPush}
+      key={index}
+    >
       {item}
     </Number>
   );
@@ -101,14 +114,7 @@ const NumberWrapperTitle = styled(FlexCenter)`
   }
 `;
 
-const NumberWrapper = ({
-  svg,
-  title,
-  text,
-  api,
-  randomNumbers,
-  numberArray,
-}) => {
+const NumberWrapper = ({ svg, title, text, api }) => {
   return (
     <NumberWrapperS>
       <NumberWrapperTitle>
@@ -118,14 +124,7 @@ const NumberWrapper = ({
       <p>{text}</p>
       <NumberWrapperGrid>
         {api.map((item, index) => {
-          return (
-            <NumberItem
-              randomNumbers={randomNumbers}
-              numberArray={numberArray}
-              item={item}
-              index={index}
-            />
-          );
+          return <NumberItem item={item} index={index} />;
         })}
       </NumberWrapperGrid>
     </NumberWrapperS>
@@ -133,45 +132,34 @@ const NumberWrapper = ({
 };
 
 const ProgressLineWrapper = styled.div``;
-export const StatisticsBox = ({
-  text,
-  api,
-  randomNumbers,
-  numberArray,
-  numberCount,
-  limitNumber,
-}) => {
+export const StatisticsBox = ({ text, api, randomNumbers, numberCount }) => {
+  const { gameInfo } = useContext(GameContext);
+
   return (
     <>
       <Box>
         <Title>Статистика {text}</Title>
         <NumberCounter>
           <b>
-            {numberCount}/{limitNumber}
+            {numberCount}/{gameInfo.limitNumber}
           </b>{" "}
           Собери комбинацию
         </NumberCounter>
         <ProgressLineWrapper></ProgressLineWrapper>
         <NumberWrapper
           api={api?.less}
-          randomNumbers={randomNumbers}
-          numberArray={numberArray}
           svg={<LessSvg />}
           title={"Предыдущий тираж"}
           text={"Числа, которые выпали в предыдущем тираже лотереи"}
         />
         <NumberWrapper
           api={api?.most}
-          randomNumbers={randomNumbers}
-          numberArray={numberArray}
           svg={<LessSvg />}
           title={"Часто выпадающие"}
           text={"Числа, которые часто выпадают в лотерее"}
         />
         <NumberWrapper
           api={api?.last}
-          randomNumbers={randomNumbers}
-          numberArray={numberArray}
           svg={<LessSvg />}
           title={"Давно не выпадали"}
           text={"Числа, которые давно не выпадали в лотерее"}
