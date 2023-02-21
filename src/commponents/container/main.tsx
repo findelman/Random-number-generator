@@ -39,6 +39,10 @@ export const MainContainer = () => {
     setGameNumber(arr.sort((a, b) => a - b));
   };
 
+useEffect(()=> {
+  generateRandomNumbers()
+},[])
+
   return (
     <Container>
       <div>
