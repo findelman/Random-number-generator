@@ -15,7 +15,7 @@ export const GameContext = createContext<{
   setgameInfo: Dispatch<SetStateAction<IgameInfo>>;
 }>({
   gameInfo: {
-    generate: true,
+    generate: false,
     limitNumber: 6,
     amountNumber: 46,
     gameTitle: "лотерея «LOTO 6/49»",

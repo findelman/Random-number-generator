@@ -1,8 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { GameContext } from "../../context/GameProvaider";
-import { apiStatistics } from "../../fake-api/api";
-import { useGenerateRandomNumbers } from "../../hooks/useGenerateRandomNumbers";
 import { useStatisticData } from "../../hooks/useStatisticData";
 import { Accardion } from "../accardion";
 import { GeneratorBox } from "../generator-box";
@@ -29,7 +27,7 @@ export const MainContainer = () => {
 
   const statisticData = useStatisticData(gameInfo);
 
-  const generateRandomNumbers = () => {
+  const generateRandomNumbers = useCallback(() => {
     const arr: number[] = [];
     for (let i = 0; i < limitNumber; i++) {
       const randomNumber = Math.floor(Math.random() * amountNumber + 1);
@@ -37,17 +35,16 @@ export const MainContainer = () => {
     }
     setgameInfo({ ...gameInfo, ["generate"]: false });
     setGameNumber(arr.sort((a, b) => a - b));
-  };
+  }, [limitNumber]);
 
-useEffect(()=> {
-  generateRandomNumbers()
-},[])
+  useEffect(() => {
+    generateRandomNumbers();
+  }, [gameTitle]);
 
   return (
     <Container>
       <div>
         <GeneratorBox
-          changeInfo={gameInfo}
           text={gameTitle}
           img={gameImg}
           numbers={gameNumber.map((item) => (
@@ -60,7 +57,6 @@ useEffect(()=> {
       <div>
         <StatisticsBox
           numberCount={gameNumber.length}
-          randomNumbers={setGameNumber}
           api={statisticData}
           text={gameTitle}
         />

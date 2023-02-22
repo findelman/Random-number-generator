@@ -20,14 +20,12 @@ const AccardionWrapperHidden = styled.div`
       : "opacity: 0; visibility: hidden; pointer-events: none;"}
 `;
 
-export const AccardionItemsWrapper = React.memo(
-  ({ accardion, changeInfo }: any) => {
-    return (
-      <AccardionWrapperHidden accardion={accardion}>
-        {accardionItemsData.map((item, key) => {
-          return <AccardionItem key={key} changeInfo={changeInfo} {...item} />;
-        })}
-      </AccardionWrapperHidden>
-    );
-  }
-);
+export const AccardionItemsWrapper = React.memo(({ accardion }: any) => {
+  return (
+    <AccardionWrapperHidden accardion={accardion}>
+      {accardionItemsData.map((item, key) => {
+        return <AccardionItem key={key} {...item} />;
+      })}
+    </AccardionWrapperHidden>
+  );
+});

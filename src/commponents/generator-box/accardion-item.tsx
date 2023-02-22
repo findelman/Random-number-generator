@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import { AccardionItemIF } from "./types";
+import { GameContext } from "../../context/GameProvaider";
+import { IAccardionItem } from "./types";
 
 export const accardionItemsData = [
   {
@@ -49,16 +50,18 @@ const BoxImg = styled.img`
   margin-right: 14px;
 `;
 export const AccardionItem = React.memo(
-  ({ img, text, limit, amount, changeInfo }: AccardionItemIF) => {
+  ({ img, text, limit, amount }: IAccardionItem) => {
+    const { setgameInfo } = useContext(GameContext);
     return (
       <Box
         data-number-limit={limit}
         onClick={() => {
-          changeInfo({
+          setgameInfo({
             gameTitle: text,
             gameImg: img,
             amountNumber: amount,
             limitNumber: limit,
+            generate: true,
           });
         }}
         data-amount-number={amount}

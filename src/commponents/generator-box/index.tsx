@@ -63,7 +63,7 @@ const Header = React.memo(() => {
   );
 });
 
-export const GeneratorBox = ({ text, img, numbers, changeInfo }) => {
+export const GeneratorBox = ({ text, img, numbers }) => {
   const [accardion, setAccardion] = React.useState(false);
 
   const toggleIsAccardion = () => {
@@ -78,7 +78,6 @@ export const GeneratorBox = ({ text, img, numbers, changeInfo }) => {
           <AccardionTitle>{text}</AccardionTitle>
           <AccardionItemsWrapper
             accardion={accardion}
-            changeInfo={changeInfo}
           />
         </AccardionWrapper>
         <NumberOutput primary>{numbers}</NumberOutput>

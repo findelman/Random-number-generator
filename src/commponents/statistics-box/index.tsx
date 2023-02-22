@@ -55,16 +55,16 @@ const NumberItem = ({ item, index }) => {
     useContext(GameContext);
 
   const numberArrayPush = () => {
-    if (gameInfo.generate) {
-      console.log("BLYAA");
-      setGameNumber([]);
-    }
-    setgameInfo({ ...gameInfo, ["generate"]: false });
     setNumberActive(!numberActive);
+    if (gameInfo.generate === false) {
+      console.log("ale ?");
+      setGameNumber([item]);
+      setgameInfo({ ...gameInfo, ["generate"]: true });
+      return;
+    }
     if (!gameNumber.includes(item)) {
-      setGameNumber([...gameNumber, item]);
+      setGameNumber((e) => [...e, item]);
     } else {
-      console.log(gameNumber);
       gameNumber.splice(gameNumber.indexOf(item), 1);
       setGameNumber([...gameNumber]);
     }
@@ -72,8 +72,12 @@ const NumberItem = ({ item, index }) => {
 
   return (
     <Number
-      disabled={gameNumber.length === gameInfo.limitNumber && !gameNumber.includes(item)}
-      isActive={gameNumber.includes(item) && !gameInfo.generate}
+      disabled={
+        gameNumber.length === gameInfo.limitNumber &&
+        !gameNumber.includes(item) &&
+        gameInfo.generate
+      }
+      isActive={gameNumber.includes(item) && gameInfo.generate}
       onClick={numberArrayPush}
       key={index}
     >
@@ -132,7 +136,7 @@ const NumberWrapper = ({ svg, title, text, api }) => {
 };
 
 const ProgressLineWrapper = styled.div``;
-export const StatisticsBox = ({ text, api, randomNumbers, numberCount }) => {
+export const StatisticsBox = ({ text, api, numberCount }) => {
   const { gameInfo } = useContext(GameContext);
 
   return (
