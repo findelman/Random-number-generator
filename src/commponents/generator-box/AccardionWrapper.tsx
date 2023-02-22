@@ -1,6 +1,7 @@
 import React from "react";
-import { accardionItemsData, AccardionItem } from "./accardion-item";
 import styled from "styled-components";
+import { accardionItemsData } from "../../fake-api/api";
+import { AccardionItem } from "./AccardionItem";
 
 const AccardionWrapperHidden = styled.div`
   position: absolute;

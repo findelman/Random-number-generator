@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { AccardionItemsWrapper } from "./AccardionItemsWrapper";
+import { AccardionItemsWrapper } from "./AccardionWrapper";
+import { Header } from "./Header";
 
 const Box = styled.div`
   background: #ffffff;
@@ -13,19 +14,6 @@ const BoxWrapper = styled.div`
   &:first-child {
     border-bottom: 1px solid #eaeff7;
   }
-`;
-
-const Title = styled.h1`
-  font-weight: 800;
-  font-size: 23px;
-  line-height: 27px;
-  margin-bottom: 10px;
-`;
-
-const SubTitle = styled.p`
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
 `;
 
 const AccardionWrapper = styled.div`
@@ -45,6 +33,7 @@ const AccardionImg = styled.img`
   width: 37px;
   margin-right: 14px;
 `;
+
 const NumberOutput = styled(AccardionWrapper)`
   border: 1px solid var(--default-border-color);
   margin-top: 20px;
@@ -52,16 +41,7 @@ const NumberOutput = styled(AccardionWrapper)`
 
 const AccardionTitle = styled.div``;
 
-const Header = React.memo(() => {
-  return (
-    <BoxWrapper>
-      <Title>Генератор cлучайных чисел</Title>
-      <SubTitle>
-        Создавайте свои случайные лотрейные комбинации для тиражных лотерей.
-      </SubTitle>
-    </BoxWrapper>
-  );
-});
+
 
 export const GeneratorBox = ({ text, img, numbers }) => {
   const [accardion, setAccardion] = React.useState(false);

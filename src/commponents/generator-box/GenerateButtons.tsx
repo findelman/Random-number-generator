@@ -21,7 +21,7 @@ const ButtonsWrapper = styled.div`
   column-gap: 10px;
 `;
 
-export const Buttons = ({ handleClick }) => {
+export const GenerateButtons = ({ handleClick }) => {
   return (
     <ButtonsWrapper>
       <GenerateButton onClick={handleClick}>Сгенерировать</GenerateButton>

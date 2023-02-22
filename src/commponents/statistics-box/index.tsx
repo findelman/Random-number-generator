@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 import { GameContext } from "../../context/GameProvaider";
-import { FlexCenter } from "../../gloabl-style/style-variables";
+import { NumberWrapper } from "./NumberWrapper";
 import { LessSvg } from "./svg";
 
 const Box = styled.div`
@@ -28,114 +28,8 @@ const NumberCounter = styled.div`
   }
 `;
 
-const Number = styled.button<{ isActive?: boolean }>`
-  :disabled {
-    opacity: ${({ isActive }) => (isActive ? "1" : "0.5")};
-  }
-  max-height: 38px;
-  transition: 300ms;
-  color: ${({ isActive }) => (isActive ? "white" : "black")};
-  padding: 50% 0px;
-  font-weight: 400;
-  border: unset;
-  cursor: pointer;
-  font-size: 14px;
-  line-height: 16px;
-  background: ${({ isActive }) =>
-    isActive ? "#2B5DA8" : "rgba(43, 93, 168, 0.05);"};
-  border-radius: 7px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const NumberItem = ({ item, index }) => {
-  const [numberActive, setNumberActive] = useState(false);
-  const { gameNumber, setGameNumber, gameInfo, setgameInfo } =
-    useContext(GameContext);
-
-  const numberArrayPush = () => {
-    setNumberActive(!numberActive);
-    if (gameInfo.generate === false) {
-      console.log("ale ?");
-      setGameNumber([item]);
-      setgameInfo({ ...gameInfo, ["generate"]: true });
-      return;
-    }
-    if (!gameNumber.includes(item)) {
-      setGameNumber((e) => [...e, item]);
-    } else {
-      gameNumber.splice(gameNumber.indexOf(item), 1);
-      setGameNumber([...gameNumber]);
-    }
-  };
-
-  return (
-    <Number
-      disabled={
-        gameNumber.length === gameInfo.limitNumber &&
-        !gameNumber.includes(item) &&
-        gameInfo.generate
-      }
-      isActive={gameNumber.includes(item) && gameInfo.generate}
-      onClick={numberArrayPush}
-      key={index}
-    >
-      {item}
-    </Number>
-  );
-};
-
-const NumberWrapperS = styled.div`
-  padding: 20px 0px;
-  :not(:last-child) {
-    border-bottom: 1px solid rgba(43, 93, 168, 0.1);
-  }
-  p {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 16px;
-    color: rgba(0, 0, 0, 0.7);
-    margin: 5px 0px 10px;
-  }
-`;
-
-const NumberWrapperGrid = styled.div`
-  display: grid;
-  gap: 8px;
-  margin-top: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(38px, 38px));
-`;
-
-const NumberWrapperTitle = styled(FlexCenter)`
-  svg {
-    margin-right: 10px;
-  }
-  h3 {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 22px;
-  }
-`;
-
-const NumberWrapper = ({ svg, title, text, api }) => {
-  return (
-    <NumberWrapperS>
-      <NumberWrapperTitle>
-        {svg}
-        <h3>{title}</h3>
-      </NumberWrapperTitle>
-      <p>{text}</p>
-      <NumberWrapperGrid>
-        {api.map((item, index) => {
-          return <NumberItem item={item} index={index} />;
-        })}
-      </NumberWrapperGrid>
-    </NumberWrapperS>
-  );
-};
-
 const ProgressLineWrapper = styled.div``;
+
 export const StatisticsBox = ({ text, api, numberCount }) => {
   const { gameInfo } = useContext(GameContext);
 
@@ -146,7 +40,8 @@ export const StatisticsBox = ({ text, api, numberCount }) => {
         <NumberCounter>
           <b>
             {numberCount}/{gameInfo.limitNumber}
-          </b>{" "}
+          </b>
+          &nbsp;
           Собери комбинацию
         </NumberCounter>
         <ProgressLineWrapper></ProgressLineWrapper>

@@ -48,3 +48,37 @@ export const apiStatistics = [
     ],
   },
 ];
+
+
+export const accardionItemsData = [
+  {
+    limit: 6,
+    amount: 49,
+    text: "лотерея «LOTO 6/49»",
+    img: "https://static.sz.kz/img/logos/649.svg",
+  },
+  {
+    limit: 5,
+    amount: 36,
+    text: "лотерея «5/36»",
+    img: "https://static.sz.kz/img/logos/536.svg",
+  },
+  {
+    limit: 10,
+    amount: 80,
+    text: "лотерея «KENO»",
+    img: "https://static.sz.kz/img/logos/keno.svg",
+  },
+  {
+    limit: 10,
+    amount: 80,
+    text: "лотерея «KENO2»",
+    img: "https://static.sz.kz/img/logos/keno2.svg",
+  },
+  {
+    limit: 3,
+    amount: 9,
+    text: "лотерея «777»",
+    img: "https://static.sz.kz/img/logos/777.svg",
+  },
+];

@@ -4,7 +4,7 @@ import { GameContext } from "../../context/GameProvaider";
 import { useStatisticData } from "../../hooks/useStatisticData";
 import { Accardion } from "../accardion";
 import { GeneratorBox } from "../generator-box";
-import { Buttons } from "../generator-box/buttons";
+import { GenerateButtons } from "../generator-box/GenerateButtons";
 import { StatisticsBox } from "../statistics-box";
 
 const Container = styled.div`
@@ -51,7 +51,7 @@ export const MainContainer = () => {
             <OutNumber>{item}</OutNumber>
           ))}
         ></GeneratorBox>
-        <Buttons handleClick={generateRandomNumbers} />
+        <GenerateButtons handleClick={generateRandomNumbers} />
         <Accardion />
       </div>
       <div>
