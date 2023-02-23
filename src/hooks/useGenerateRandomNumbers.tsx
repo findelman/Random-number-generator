@@ -1,12 +1,11 @@
-import { useCallback, useContext, useEffect, useMemo } from "react";
+import { useCallback, useContext } from "react";
 import { GameContext } from "../context/GameProvaider";
 
 export const useGenerateRandomNumbers = () => {
-  const { gameNumber, setGameNumber, gameInfo, setgameInfo } =
-    useContext(GameContext);
-  const { limitNumber, amountNumber, gameTitle, gameImg } = gameInfo;
+  const { setGameNumber, gameInfo, setgameInfo } = useContext(GameContext);
+  const { limitNumber, amountNumber } = gameInfo;
 
-  const generateRandomNumbers = useCallback(() => {
+  return useCallback(() => {
     const arr: number[] = [];
     for (let i = 0; i < limitNumber; i++) {
       const randomNumber = Math.floor(Math.random() * amountNumber + 1);

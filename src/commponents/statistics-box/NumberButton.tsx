@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { GameContext } from "../../context/GameProvaider";
+import { useGenerateRandomNumbers } from "../../hooks/useGenerateRandomNumbers";
 
 const Number = styled.button<{ isActive?: boolean }>`
   :disabled {
@@ -27,6 +28,8 @@ export const NumberButton = ({ item, index }) => {
   const { gameNumber, setGameNumber, gameInfo, setgameInfo } =
     useContext(GameContext);
 
+  const generateNumber = useGenerateRandomNumbers();
+
   const numberArrayPush = () => {
     if (gameInfo.generate === false) {
       setGameNumber([item]);
@@ -37,6 +40,7 @@ export const NumberButton = ({ item, index }) => {
       gameNumber.splice(gameNumber.indexOf(item), 1);
       setGameNumber([...gameNumber]);
       if (gameNumber.length === 0) {
+        generateNumber();
       }
     }
   };
