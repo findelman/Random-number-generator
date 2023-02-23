@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { GameContext } from "../../context/GameProvaider";
+import { media } from "../../gloabl-style/style-variables";
 import { useGenerateRandomNumbers } from "../../hooks/useGenerateRandomNumbers";
 import { useStatisticData } from "../../hooks/useStatisticData";
 import { Accardion } from "../accardion";
@@ -14,6 +15,11 @@ const Container = styled.div`
   gap: 40px;
   max-width: 1140px;
   margin: 90px auto 0px;
+  ${media.mobile} {
+    grid-template-columns: 1fr;
+    padding: 0px 15px;
+    margin: 10px auto 0px;
+  }
 `;
 
 const OutNumber = styled.div`
@@ -21,11 +27,12 @@ const OutNumber = styled.div`
 `;
 
 export const MainContainer = () => {
-  const { gameNumber, gameInfo } = useContext(GameContext);
+  const {
+    gameNumber,
+    gameInfo: { gameTitle, gameImg },
+  } = useContext(GameContext);
 
-  const { gameTitle, gameImg } = gameInfo;
-
-  const statisticData = useStatisticData(gameInfo);
+  const statisticData = useStatisticData(gameTitle);
 
   const generateRandomNumbers = useGenerateRandomNumbers();
 

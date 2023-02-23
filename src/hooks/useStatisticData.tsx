@@ -6,7 +6,7 @@ export const useStatisticData = (changeInfo) => {
 
   useEffect(() => {
     const SearchGameStatistics = apiStatistics.find((e) =>
-      e.game.includes(changeInfo.gameTitle)
+      e.game.includes(changeInfo)
     );
     SetstatisticData(SearchGameStatistics);
   }, [changeInfo]);

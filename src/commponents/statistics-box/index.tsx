@@ -2,7 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { GameContext } from "../../context/GameProvaider";
 import { NumberWrapper } from "./NumberWrapper";
-import { LessSvg } from "./svg";
+import { LastSvg, LessSvg, MostSvg } from "./svg";
 
 const Box = styled.div`
   padding: 20px;
@@ -53,13 +53,13 @@ export const StatisticsBox = ({ text, api, numberCount }) => {
         />
         <NumberWrapper
           api={api?.most}
-          svg={<LessSvg />}
+          svg={<MostSvg />}
           title={"Часто выпадающие"}
           text={"Числа, которые часто выпадают в лотерее"}
         />
         <NumberWrapper
           api={api?.last}
-          svg={<LessSvg />}
+          svg={<LastSvg />}
           title={"Давно не выпадали"}
           text={"Числа, которые давно не выпадали в лотерее"}
         />
