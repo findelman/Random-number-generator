@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { ArrowSvg } from "../svg";
 import { AccardionItemsWrapper } from "./AccardionWrapper";
 import { Header } from "./Header";
 
@@ -41,8 +42,6 @@ const NumberOutput = styled(AccardionWrapper)`
 
 const AccardionTitle = styled.div``;
 
-
-
 export const GeneratorBox = ({ text, img, numbers }) => {
   const [accardion, setAccardion] = React.useState(false);
 
@@ -56,9 +55,8 @@ export const GeneratorBox = ({ text, img, numbers }) => {
         <AccardionWrapper onClick={toggleIsAccardion} accardion={accardion}>
           <AccardionImg src={img} />
           <AccardionTitle>{text}</AccardionTitle>
-          <AccardionItemsWrapper
-            accardion={accardion}
-          />
+          <ArrowSvg rotate={accardion}/>
+          <AccardionItemsWrapper accardion={accardion} />
         </AccardionWrapper>
         <NumberOutput primary>{numbers}</NumberOutput>
       </BoxWrapper>

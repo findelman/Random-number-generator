@@ -4,4 +4,5 @@ export interface IAccardionItem {
   text: string;
   limit: number;
   amount: number;
+  gameId: number
 }

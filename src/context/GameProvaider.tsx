@@ -6,6 +6,7 @@ interface IgameInfo {
   gameTitle: string;
   gameImg: string;
   generate: boolean;
+  gameId: number;
 }
 
 export const GameContext = createContext<{
@@ -20,6 +21,7 @@ export const GameContext = createContext<{
     amountNumber: 46,
     gameTitle: "лотерея «LOTO 6/49»",
     gameImg: "https://static.sz.kz/img/logos/649.svg",
+    gameId: 10,
   },
   gameNumber: [],
   setgameInfo: () => {},
@@ -33,6 +35,7 @@ export const GameProvaider = ({ children }: { children: React.ReactNode }) => {
     gameTitle: "лотерея «LOTO 6/49»",
     generate: true,
     gameImg: "https://static.sz.kz/img/logos/649.svg",
+    gameId: 10,
   });
 
   const [gameNumber, setGameNumber] = useState<any>([]);

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { JC_SB } from "../../gloabl-style/style-variables";
+import { ArrowSvg } from "../svg";
 
 const AccardionWrapper = styled.div`
-  padding: 20px ;
+  padding: 20px;
   border-radius: var(--default-border-radius);
   margin-top: 40px;
   border: 1px solid #eaeff7;
@@ -31,7 +33,7 @@ const AccardionItem = styled.div`
     color: #2b5da8;
     font-weight: 700;
   }
-    margin-top: 25px;
+  margin-top: 25px;
 `;
 
 export const Accardion = React.memo(() => {
@@ -44,7 +46,10 @@ export const Accardion = React.memo(() => {
           setShowAccardion(!showAccardion);
         }}
       >
-        <h2>Как это работает ?</h2>
+        <JC_SB>
+          <h2>Как это работает ?</h2>
+          <ArrowSvg rotate={showAccardion} />
+        </JC_SB>
         <AccardionArrow />
         <AccardionHidden isShow={showAccardion}>
           <AccardionItem>
