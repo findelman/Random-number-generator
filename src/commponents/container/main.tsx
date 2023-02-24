@@ -47,7 +47,7 @@ export const MainContainer = () => {
           text={gameTitle}
           img={gameImg}
           numbers={gameNumber.map((item) => (
-            <OutNumber>{item}</OutNumber>
+            <OutNumber key={item}>{item}</OutNumber>
           ))}
         ></GeneratorBox>
         <GenerateButtons handleClick={generateRandomNumbers} />

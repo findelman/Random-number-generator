@@ -7,9 +7,9 @@ export const useGenerateRandomNumbers = () => {
 
   return useCallback(() => {
     const arr: number[] = [];
-    for (let i = 0; i < limitNumber; i++) {
+    while (arr.length < limitNumber) {
       const randomNumber = Math.floor(Math.random() * amountNumber + 1);
-      arr.push(randomNumber);
+      if (!arr.includes(randomNumber)) arr.push(randomNumber);
     }
     setgameInfo({ ...gameInfo, ["generate"]: false });
     setGameNumber(arr.sort((a, b) => a - b));

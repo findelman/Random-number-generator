@@ -28,10 +28,25 @@ const NumberCounter = styled.div`
   }
 `;
 
-const ProgressLineWrapper = styled.div``;
+const ProgressLineWrapper = styled.div`
+  width: 100%;
+  height: 2px;
+  overflow: hidden;
+  background: gray;
+  margin: 10px 0px 5px;
+  background: rgba(43, 93, 168, 0.1);
+  border-radius: 5px;
+`;
+
+const ProgressLine = styled.div`
+  background: #2b5da8;
+  height: 100%;
+  transition: 300ms ;
+  width: ${({ width }) => `${width}%`};
+`;
 
 export const StatisticsBox = ({ text, api, numberCount }) => {
-  const { gameInfo } = useContext(GameContext);
+  const { gameInfo, gameNumber } = useContext(GameContext);
 
   return (
     <>
@@ -41,10 +56,13 @@ export const StatisticsBox = ({ text, api, numberCount }) => {
           <b>
             {numberCount}/{gameInfo.limitNumber}
           </b>
-          &nbsp;
-          Собери комбинацию
+          &nbsp; Собери комбинацию
         </NumberCounter>
-        <ProgressLineWrapper></ProgressLineWrapper>
+        <ProgressLineWrapper>
+          <ProgressLine
+            width={(gameNumber.length * 100) / gameInfo.limitNumber }
+          ></ProgressLine>
+        </ProgressLineWrapper>
         <NumberWrapper
           api={api?.less}
           svg={<LessSvg />}

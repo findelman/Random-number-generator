@@ -18,7 +18,7 @@ const BoxImg = styled.img`
 `;
 
 export const AccardionItem = React.memo(
-  ({ img, text, limit, amount,gameId }: IAccardionItem) => {
+  ({ img, text, limit, amount, gameId }: IAccardionItem) => {
     const { setgameInfo } = useContext(GameContext);
     return (
       <Box
@@ -29,8 +29,8 @@ export const AccardionItem = React.memo(
             gameImg: img,
             amountNumber: amount,
             limitNumber: limit,
-            generate: true,
-            gameId: gameId
+            generate: false,
+            gameId: gameId,
           });
         }}
         data-amount-number={amount}
